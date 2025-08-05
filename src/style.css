@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'Degular Demo Bold';
+    src: url('/public/assets/Fonts/DegularDemo-Black.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Degular Demo';
+    src: url('/public/assets/Fonts/DegularDemo-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    --deep-navy: #071C41;
+    --black: #000000;
+    --dark-blue: #10326F;
+    --vivid-medium-blue: #014FB3;
+    --white: #FFFFFF;
+    --gray:#E0DCDC;
+    --dark-gray: #A9A9A9;
+}
+
+*{
+    box-sizing: border-box;
+    font-family: 'Degular Demo', sans-serif;
+}
+
+body{
+    margin: 0;
+}
+
+/*Header Styling*/
+.header_container {
+    background-image: linear-gradient(to right, var(--black) 20%, var(--dark-blue) 80%);
+    height: 100px;
+    padding: 1rem;
+    margin: 0;  
+}
+
+.header_container img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+}
+
+/*Form Styling*/
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-y: auto;
+    padding-left: 2rem;
+}
