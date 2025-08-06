@@ -1,12 +1,12 @@
 @font-face {
     font-family: 'Degular Demo Bold';
-    src: url('/public/assets/Fonts/DegularDemo-Black.otf') format('opentype');
+    src: url('/Fonts/DegularDemo-Black.otf') format('opentype');
     font-weight: 900;
     font-style: normal;
 }
 @font-face {
     font-family: 'Degular Demo';
-    src: url('/public/assets/Fonts/DegularDemo-Regular.otf') format('opentype');
+    src: url('/Fonts/DegularDemo-Regular.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
 }
