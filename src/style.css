@@ -14,7 +14,7 @@
 :root {
     --deep-navy: #071C41;
     --black: #000000;
-    --dark-blue: #10326F;
+    --dark-blue: #14346D;
     --vivid-medium-blue: #014FB3;
     --white: #FFFFFF;
     --gray:#E0DCDC;
@@ -28,27 +28,148 @@
 
 body{
     margin: 0;
+    height: 100vh;
+    background:linear-gradient(to right, var(--black) 20%, var(--dark-blue) 80%);
 }
 
 /*Header Styling*/
 .header_container {
-    background-image: linear-gradient(to right, var(--black) 20%, var(--dark-blue) 80%);
+    display: flex;
     height: 100px;
     padding: 1rem;
-    margin: 0;  
+    margin: 0; 
+    justify-content: space-between;
 }
 
 .header_container img {
     width: 100%;
-    height: auto;
+    height: 100%;
     max-width: 200px;
+    margin-left: 1rem;
+}
+
+.navBar {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    color: var(--white);
+}
+
+.navBar .active{
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.mainContainer {
+    width: 100%;
+    height: calc(100vh - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 /*Form Styling*/
-.mainContainer{
+.admissionForm {
+    width:80%;
+    border-radius: 1.5rem;
+    background-color: var(--white);
     display: flex;
     flex-direction: column;
+    padding: 2rem;
+    flex-wrap: wrap;
+}
+
+.admissionForm h1{
+    margin: 0;
+}
+
+.formContainer {
     width: 100%;
-    overflow-y: auto;
-    padding-left: 2rem;
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+}
+
+form{
+    width: 70%;
+}
+
+.studentInfo{
+    width: 100%;
+    gap: 2rem;
+    display: flex;
+}
+
+.studentInfo label{
+   margin-top: .5rem;
+}
+
+.studentImage{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border: 3px dashed var(--deep-navy);
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+/*make the upload file not overflow the container*/
+.studentImage input[type="file"] {
+    max-width: 100%;
+}
+
+.stack{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.leftSideForm{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.genderAndBirthday, .contactInfo{
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+input, select{
+    padding: 0.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.rightSideForm{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.submitBtn{
+    width: 15%;
+    cursor: pointer;
+    background-color: var(--dark-blue);
+    color: var(--white);
+    border: none;
+    border-radius: .5rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: .5rem;
+    font-size: 1rem;
 }
