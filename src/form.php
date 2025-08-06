@@ -25,8 +25,9 @@
             <h1>Student Admission Form</h1>
             <div class="formContainer">
                 <form method="POST" action="#">
-                     <div class="studentInfo">
-                        <div class="leftSideForm">
+                    <div class="studentInfo">
+                        <!--Student Personal Information-->
+                        <div class="personalDetails">
                             <label for="fullName">Full Name:</label>
                             <input type="text" id="fullName" name="fullName" required>
 
@@ -53,26 +54,19 @@
                                 </div>
 
                                 <div class="stack">
-                                    <label for="telNum">Tel. Number:</label>
-                                    <input type="text" id="telNum" name="telNum" required>
+                                    <label for="email">Email:</label>
+                                     <input type="email" id="email" name="email" required>
                                 </div>
                             </div>
-
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" required>
                         </div>
-                        <div class="rightSideForm">
+
+                        <!-- Student Academic Information -->
+                        <div class="academicDetails">
                             <label for="program">Program:</label>
-                            <select id="program" name="program" required>
-                                <option value="" disabled selected>Select Program</option>
-                                <option value="bsit">Bachelor of Science in Computer Science with Specialization in Software Engineering</option>
-                                <option value="bshrm">Bachelor of Science in Hotel and Restaurant Management</option>
-                                <option value="bsba">Bachelor of Science in Business Administration</option>
-                            </select>
+                           <input type="text" id="program" name="program" required>
+
                             <label for="yearLevel">Year Level:</label>
-                            <select id="yearLevel" name="yearLevel" required>
-                                <option value="" disabled selected>Select Year Level</option>
-                            </select>
+                            <input type="number" id="yearLevel" name="yearLevel" required>
                         </div>
                     </div>
                 </form>

@@ -68,8 +68,7 @@ body{
     height: calc(100vh - 100px);
     display: flex;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center;  
 }
 
 /*Form Styling*/
@@ -79,12 +78,14 @@ body{
     background-color: var(--white);
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 3rem;
     flex-wrap: wrap;
+    font-size: 1.2rem;
 }
 
 .admissionForm h1{
     margin: 0;
+    font-family: Degular Demo Bold, sans-serif;
 }
 
 .formContainer {
@@ -131,7 +132,7 @@ form{
     flex: 1;
 }
 
-.leftSideForm{
+.personalDetails{
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -148,7 +149,7 @@ input, select{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.rightSideForm{
+.academicDetails{
     width: 40%;
     display: flex;
     flex-direction: column;
