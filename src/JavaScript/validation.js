@@ -72,9 +72,18 @@ function validateForm(event) {
         return false;
     }
 
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        form.addEventListener('reset', function(e) {
+            if (!confirm("Are you sure you want to clear the form?")) {
+                e.preventDefault();
+            }
+        });
+    });
+
     // If all validations pass, allow form submission
-    document.querySelector('form').reset();
-    alert("Form submitted successfully!");
+    event.preventDefault();
+    alert("Form submitted successfully!");  
     return true;
 }
 
