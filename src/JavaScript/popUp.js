@@ -16,5 +16,5 @@ const resetBtn = document.getElementById('resetBtn');
     confirmBtn.addEventListener('click', function() {
         form.reset(); // Reset the form
         clearInfoPopup.style.display = 'none'; // Hide the popup
-        alert("Form has been cleared.");
+        // alert("Form has been cleared.");
     });

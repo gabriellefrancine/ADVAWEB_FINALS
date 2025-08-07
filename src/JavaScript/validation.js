@@ -71,24 +71,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const image = document.getElementById('image').files[0];
-        if (!image) {
-            alert("Please upload a student photo");
-            event.preventDefault();
-            return;
-        }
-        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
-        if (!validImageTypes.includes(image.type)) {
-            alert("Invalid image type. Please upload a JPEG, PNG, or GIF image.");
-            event.preventDefault();
-            return;
-        }
-        if (image.size > 5 * 1024 * 1024) { // 5MB limit
-            alert("Image size exceeds 5MB. Please upload a smaller image.");
-            event.preventDefault();
-            return;
+        if (image) {
+            const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            if (!validImageTypes.includes(image.type)) {
+                alert("Invalid image type. Please upload a JPEG, PNG, or GIF image.");
+                event.preventDefault();
+                return;
+            }
+            if (image.size > 5 * 1024 * 1024) { // 5MB limit
+                alert("Image size exceeds 5MB. Please upload a smaller image.");
+                event.preventDefault();
+                return;
+            }
         }
 
-        alert("Form submitted successfully!");
-        event.preventDefault();
+        // All validations passed, allow form submission
+       // alert("Form submitted successfully!");
     });
 });

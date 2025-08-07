@@ -1,3 +1,58 @@
+<?php
+// Start session to handle messages
+session_start();
+
+// Database Connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "school_db";
+
+$allStudents = [];
+$students = [];
+$totalRecords = 0;
+$recordsPerPage = 4;
+$currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($currentPage - 1) * $recordsPerPage;
+$searchTerm = isset($_GET['search']) ? trim($_GET['search']) : '';
+
+try {
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    
+    // Build query with search functionality
+    if (!empty($searchTerm)) {
+        $sql = "SELECT id, full_name, dob, gender, course, year_level, contact_number, email, created_at FROM students WHERE full_name LIKE '%$searchTerm%' OR course LIKE '%$searchTerm%' ORDER BY id ASC";
+    } else {
+        $sql = "SELECT id, full_name, dob, gender, course, year_level, contact_number, email, created_at FROM students ORDER BY id ASC";
+    }
+    
+    $result = $conn->query($sql);
+    
+    if ($result) {
+        while ($row = $result->fetch_assoc()) {
+            $allStudents[] = $row;
+        }
+    }
+    
+    // Use count() function to get total records
+    $totalRecords = count($allStudents);
+    
+    // Calculate total pages
+    $totalPages = ceil($totalRecords / $recordsPerPage);
+    
+    // Get students for current page using array_slice
+    $students = array_slice($allStudents, $offset, $recordsPerPage);
+    
+    $conn->close();
+    
+} catch (Exception $e) {
+    $error_message = "Error fetching data: " . $e->getMessage();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,18 +74,23 @@
         </div>
     </header>
 
-    <div class="mainWrapper">
+    <div class="mainWrapper">        
         <!--contains title, search bar, and filter -->
         <div class="featuresContainer">
             <div class="title">
                 <h1>Student Records</h1>
             </div>
 
-            <form class="searchBar">
-                <input type="text" placeholder="Search..." name="search">
+            <form class="searchBar" method="GET">
+                <input type="text" placeholder="Search by name or program..." name="search" value="<?php echo htmlspecialchars($searchTerm); ?>">
                 <button type="submit">
                     <i class="fa fa-search"></i>
                 </button>
+                <?php if (!empty($searchTerm)): ?>
+                    <a href="display.php" class="clearSearch" title="Clear search">
+                        <i class="fa fa-times"></i>
+                    </a>
+                <?php endif; ?>
             </form>
         </div>
 
@@ -39,12 +99,51 @@
             <!--count of entries found -->
             <div class="topContainer">
                 <div class="message">
-                    <p>Dito lalagay kung ilan entries nahanap if nag search</p>
+                    <?php if (isset($error_message)): ?>
+                        <p style="color: red;"><?php echo htmlspecialchars($error_message); ?></p>
+                    <?php else: ?>
+                        <?php if (!empty($searchTerm)): ?>
+                            <p>Search results for "<?php echo htmlspecialchars($searchTerm); ?>": Page <?php echo $currentPage; ?> of <?php echo $totalPages; ?> (<?php echo $totalRecords; ?> found)</p>
+                        <?php else: ?>
+                            <p>Page <?php echo $currentPage; ?> of <?php echo $totalPages; ?> (<?php echo $totalRecords; ?> total records)</p>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+                
+                <!-- Display session messages on the right side -->
+                <div class="sessionMessage">
+                    <?php if (isset($_SESSION['message'])): ?>
+                        <div class="message <?php echo $_SESSION['messageType']; ?>">
+                            <?php 
+                            echo htmlspecialchars($_SESSION['message']); 
+                            unset($_SESSION['message'], $_SESSION['messageType']);
+                            ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
 
                 <div class="pageController">
-                    <button class="prevPage"><i class="fa fa-chevron-left"></i></button>
-                    <button class="nextPage"><i class="fa fa-chevron-right"></i></button>
+                    <?php if ($currentPage > 1): ?>
+                        <button class="prevPage" onclick="window.location.href='?page=<?php echo $currentPage - 1; ?><?php echo !empty($searchTerm) ? '&search=' . urlencode($searchTerm) : ''; ?>'">
+                            <i class="fa fa-chevron-left"></i>
+                        </button>
+                    <?php else: ?>
+                        <button class="prevPage" disabled>
+                            <i class="fa fa-chevron-left"></i>
+                        </button>
+                    <?php endif; ?>
+                    
+                    <span class="pageInfo">Page <?php echo $currentPage; ?> of <?php echo $totalPages; ?></span>
+                    
+                    <?php if ($currentPage < $totalPages): ?>
+                        <button class="nextPage" onclick="window.location.href='?page=<?php echo $currentPage + 1; ?><?php echo !empty($searchTerm) ? '&search=' . urlencode($searchTerm) : ''; ?>'">
+                            <i class="fa fa-chevron-right"></i>
+                        </button>
+                    <?php else: ?>
+                        <button class="nextPage" disabled>
+                            <i class="fa fa-chevron-right"></i>
+                        </button>
+                    <?php endif; ?>
                 </div>
             </div>
 
@@ -65,27 +164,67 @@
                     </tr>
                 </thead>
                <tbody id="studentTableBody">
-                    <tr>
-                        <td><img src="/Images/logo.svg" alt="Picture"></td>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>2005-02-08</td>
-                        <td>Male</td>
-                        <td>BSCSSE</td>
-                        <td>3rd Year</td>
-                        <td>09123456789</td>
-                        <td>johndoe@example.com</td>
-                        <td>2025-7-01</td> 
-                        <td>
-                            <div class="buttonCont">
-                                <button>Update</button>
-                                <button>Delete</button>
-                            </div>
-                        </td>
-                    </tr>
+                    <?php if (empty($students) && !isset($error_message)): ?>
+                        <tr>
+                            <td colspan="11" style="text-align: center; padding: 2rem;">
+                                No student records found. <a href="form.php">Add a student</a>
+                            </td>
+                        </tr>
+                    <?php else: ?>
+                        <?php foreach ($students as $student): ?>
+                            <tr>
+                                <td>
+                                    <img src="display_image.php?id=<?php echo $student['id']; ?>" 
+                                         alt="Student Picture" 
+                                         style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;"
+                                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjZjBmMGYwIi8+Cjx0ZXh0IHg9IjMwIiB5PSIzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzk5OSI+Tm8gSW1hZ2U8L3RleHQ+Cjwvc3ZnPg==';">
+                                </td>
+                                <td><?php echo htmlspecialchars($student['id']); ?></td>
+                                <td><?php echo htmlspecialchars($student['full_name']); ?></td>
+                                <td><?php echo htmlspecialchars($student['dob']); ?></td>
+                                <td><?php echo htmlspecialchars(ucfirst($student['gender'])); ?></td>
+                                <td><?php echo htmlspecialchars($student['course']); ?></td>
+                                <td><?php echo htmlspecialchars($student['year_level']); ?></td>
+                                <td><?php echo htmlspecialchars($student['contact_number']); ?></td>
+                                <td><?php echo htmlspecialchars($student['email']); ?></td>
+                                <td><?php echo isset($student['created_at']) ? date('Y-m-d', strtotime($student['created_at'])) : 'N/A'; ?></td>
+                                <td>
+                                    <div class="buttonCont">
+                                        <button onclick="updateStudent(<?php echo $student['id']; ?>)">Update</button>
+                                        <button onclick="deleteStudent(<?php echo $student['id']; ?>)">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
     </div>
+
+    <script>
+        function updateStudent(id) {
+            // Redirect to update form (you can create this later)
+            window.location.href = 'update_student.php?id=' + id;
+        }
+
+        function deleteStudent(id) {
+            if (confirm('Are you sure you want to delete this student record?')) {
+                // Create a form to submit the delete request
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'delete_student.php';
+                
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'student_id';
+                input.value = id;
+                
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    </script>
 </body>
 </html>

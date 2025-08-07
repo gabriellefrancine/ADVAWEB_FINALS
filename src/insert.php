@@ -4,26 +4,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $gender = $_POST['gender'];
     $birthday = $_POST['birthday'];
     $mobNum = $_POST['mobNum'];
-    $telNum = $_POST['telNum'];
     $email = $_POST['email'];
     $program = $_POST['program'];
     $yearLevel = $_POST['yearLevel'];
     $uploadedImage = $_FILES['image'] ?? null;
 
-    // PHPMyAdmin Connection
+    // Database Connection
     $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "school_db";
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+    try {
+        // Handle image upload
+        $imageData = null;
+        if ($uploadedImage && $uploadedImage['error'] === UPLOAD_ERR_OK) {
+            $imageData = file_get_contents($uploadedImage['tmp_name']);
+        }
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        
+        if ($conn->connect_error) {
+            throw new Exception("Connection failed: " . $conn->connect_error);
+        }
+        
+        // Simple INSERT query
+        $stmt = $conn->prepare("INSERT INTO students (full_name, dob, gender, course, year_level, contact_number, email, student_picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"); 
+        $stmt->bind_param("ssssisss", $fullName, $birthday, $gender, $program, $yearLevel, $mobNum, $email, $imageData);
+        
+        if ($stmt->execute()) {
+            $message = "Student record added successfully!";
+            $messageType = "success";
+        } else {
+            $message = "Error: " . $stmt->error;
+            $messageType = "error";
+        }
+        
+        $stmt->close();
+        $conn->close();
+        
+    } catch (Exception $e) {
+        $message = "Error: " . $e->getMessage();
+        $messageType = "error";
     }
-    $stmt = $conn->prepare("INSERT INTO students (full_name, dob, gender, course, year_level, contact_number, email, student_picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"); 
-    // execute the prepared statement
-    $stmt->bind_param("ssssssss", $fullName, $birthday, $gender, $program, $yearLevel, $mobNum, $email, $imagePath);
-    $stmt->execute();
 }
 ?>

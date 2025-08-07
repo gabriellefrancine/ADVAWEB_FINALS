@@ -1,3 +1,10 @@
+
+<?php
+// Only include insert.php when form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    include 'insert.php';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,68 +32,72 @@
     <div class="mainContainer">
         <div class="admissionForm">
             <h1>Student Admission Form</h1>
-            <div class="formContainer">
-                <form method="POST" action="#">
-                   <div class="formFields">
-                        <div class="studentInfo">
-                            <!--Student Personal Information-->
-                            <div class="personalDetails">
-                                <label for="fullName">Full Name:</label>
-                                <input type="text" id="fullName" name="fullName">
-
-                                <div class="genderAndBirthday">
-                                    <div class="stack">
-                                        <label for="gender">Gender:</label>
-                                        <select id="gender" name="gender">
-                                            <option value="" disabled selected>Select Gender</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="stack">
-                                        <label for="birthday">Birthday:</label>
-                                        <input type="date" id="birthday" name="birthday">
-                                    </div>
-                                </div>
-
-                                <div class="contactInfo">
-                                    <div class="stack">
-                                        <label for="mobNum">Mobile Number:</label>
-                                        <input type="text" id="mobNum" name="mobNum">
-                                    </div>
-
-                                    <div class="stack">
-                                        <label for="email">Email:</label>
-                                        <input type="email" id="email" name="email">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Student Academic Information -->
-                            <div class="academicDetails">
-                                <label for="program">Program:</label>
-                                <input type="text" id="program" name="program">
-
-                                <label for="yearLevel">Year Level:</label>
-                                <input type="number" id="yearLevel" name="yearLevel">
-                            </div>
-                        </div>
-
-                        <!-- Image Upload Section -->
-                        <div class="studentImage">
-                            <div class="uploadSection">
-                                <label for="image">Student Photo:</label>
-                                <input type="file" name="image" id="image">
-                            </div>
-                        </div>
-                   </div>
             
-                    <div class="buttonContainer">
-                        <!-- Submit Button -->
-                        <button type="submit" class="submitBtn">SUBMIT</button>
+            <?php if (isset($message)): ?>
+                <div class="message <?php echo $messageType; ?>">
+                    <?php echo htmlspecialchars($message); ?>
+                </div>
+            <?php endif; ?>
+            
+            <div class="formContainer">
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="studentInfo">
+                        <!--Student Personal Information-->
+                        <div class="personalDetails">
+                            <label for="fullName">Full Name:</label>
+                            <input type="text" id="fullName" name="fullName" required>
 
+                            <div class="genderAndBirthday">
+                                <div class="stack">
+                                    <label for="gender">Gender:</label>
+                                    <select id="gender" name="gender" required>
+                                        <option value="" disabled selected>Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="stack">
+                                    <label for="birthday">Birthday:</label>
+                                    <input type="date" id="birthday" name="birthday" required>
+                                </div>
+                            </div>
+
+                            <div class="contactInfo">
+                                <div class="stack">
+                                    <label for="mobNum">Mobile Number:</label>
+                                    <input type="text" id="mobNum" name="mobNum" required>
+                                </div>
+
+                                <div class="stack">
+                                    <label for="email">Email:</label>
+                                     <input type="email" id="email" name="email" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Student Academic Information -->
+                        <div class="academicDetails">
+                            <label for="program">Program:</label>
+                           <input type="text" id="program" name="program" required>
+
+                            <label for="yearLevel">Year Level:</label>
+                            <input type="number" id="yearLevel" name="yearLevel" required>
+                        </div>
+                    </div>
+                
+                    <!-- Image Upload Section -->
+                    <div class="studentImage">
+                        <div class="uploadSection">
+                            <label for="image">Student Photo:</label>
+                            <input type="file" name="image" id="image">
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="buttonContainer">
+                        <button type="submit" class="submitBtn">SUBMIT</button>
                         <!-- Reset Button -->
                         <button type="reset" class="submitBtn" id="resetBtn">RESET</button>
                     </div>
