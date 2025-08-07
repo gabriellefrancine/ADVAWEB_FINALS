@@ -104,6 +104,7 @@ if (isset($_SESSION['message']) && empty($message)) {
     <link rel="stylesheet" href="/src/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script defer src="/src/JavaScript/updatePopup.js"></script>
+    <script defer src="/src/JavaScript/animation.js"></script>
     <title>Update Student</title>
 </head>
 <body>
@@ -221,5 +222,7 @@ if (isset($_SESSION['message']) && empty($message)) {
             </div>
         </div>
     </div>
+
+    <canvas id="circleAnimation"></canvas>
 </body>
 </html>

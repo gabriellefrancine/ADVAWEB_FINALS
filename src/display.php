@@ -62,6 +62,7 @@ try {
     <link rel="stylesheet" href="/src/style.css">
     <script defer src="/src/JavaScript/messageHandler.js"></script>
     <script defer src="/src/JavaScript/displayPopup.js"></script>
+    <script defer src="/src/JavaScript/animation.js"></script>
     <title>Student Records</title>
 </head>
 <body>
@@ -238,5 +239,6 @@ try {
         </div>
     </div>
 
+    <canvas id="circleAnimation"></canvas>
 </body>
 </html>
