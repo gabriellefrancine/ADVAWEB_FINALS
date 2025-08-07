@@ -98,7 +98,7 @@
                 </div>
                 <div class="answer">
                     <button type="yes" class="submitBtn" id="yes">YES</button>
-                    <button type="no" class="submitBtn" id="no">NO</button>
+                    <button type="cancel" class="submitBtn" id="cancel">CANCEL</button>
                 </div>
             </div>
         </div>

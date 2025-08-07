@@ -94,14 +94,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const resetBtn = document.getElementById('resetBtn');
     const clearInfoPopup = document.getElementById('clearInfoPopup');
-    const noBtn = document.getElementById('noBtn');
+    const cancelBtn = document.getElementById('cancel');
 
     resetBtn.addEventListener('click', function(event) {
         event.preventDefault();
         clearInfoPopup.style.display = 'block';
     });
 
-    noBtn.addEventListener('click', function() {
+    cancelBtn.addEventListener('click', function() {
         clearInfoPopup.style.display = 'none';
     });
 });
