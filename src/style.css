@@ -201,3 +201,23 @@ input, select{
   pointer-events: none; /* so clicks go through */
   z-index: -1; /* behind your form */
 }
+
+.clearInfo {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    display: none;            
+}
+
+.answer {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* space between buttons */
+}

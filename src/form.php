@@ -88,12 +88,23 @@
                         <button type="submit" class="submitBtn">SUBMIT</button>
 
                         <!-- Reset Button -->
-                        <button type="reset" class="submitBtn">RESET</button>
+                        <button type="reset" class="submitBtn" id="reserBtn">RESET</button>
                     </div>
                 </form>
             </div>
+            <div class="clearInfo" id="clearInfoPopup">
+                <div class="question">
+                    <p>Are you sure you want to clear the form?</p>
+                </div>
+                <div class="answer">
+                    <button type="yes" class="submitBtn" id="yes">YES</button>
+                    <button type="no" class="submitBtn" id="no">NO</button>
+                </div>
+            </div>
         </div>
     </div>
+
+
     <canvas id="circleAnimation"></canvas>
 </body>
 </html>

@@ -92,9 +92,16 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
     });
 
-    form.addEventListener('reset', function(e) {
-        if (!confirm("Are you sure you want to clear the form?")) {
-            e.preventDefault();
-        }
+    const resetBtn = document.getElementById('resetBtn');
+    const clearInfoPopup = document.getElementById('clearInfoPopup');
+    const noBtn = document.getElementById('noBtn');
+
+    resetBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        clearInfoPopup.style.display = 'block';
+    });
+
+    noBtn.addEventListener('click', function() {
+        clearInfoPopup.style.display = 'none';
     });
 });
