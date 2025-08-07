@@ -155,6 +155,13 @@ input, select{
     flex-direction: column;
 }
 
+.personalDetails input,
+.academicDetails input,
+.stack select,
+.stack input {
+    margin-bottom: .5rem;
+}
+
 .buttonContainer{
     width: 100%;
     display: flex;
