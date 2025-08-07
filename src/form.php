@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $uploadedImage = $_FILES['image'] ?? null;
 
     // PHPMyAdmin Connection
-    $servername = "localhost";
+    $servername = "127.0.0.1";
     $username = "root";
     $password = "";
     $dbname = "school_db";
