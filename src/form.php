@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/src/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script defer src="/src/JavaScript/validation.js"></script>
+     <script defer src="/src/JavaScript/animation.js"></script>
     <title>Student Admission</title>
 </head>
 <body>
@@ -82,13 +83,17 @@
                         </div>
                    </div>
             
-                    <!-- Submit Button -->
                     <div class="buttonContainer">
+                        <!-- Submit Button -->
                         <button type="submit" class="submitBtn">SUBMIT</button>
+
+                        <!-- Reset Button -->
+                        <button type="reset" class="submitBtn">RESET</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <canvas id="circleAnimation"></canvas>
 </body>
 </html>
