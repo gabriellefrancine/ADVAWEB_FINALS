@@ -24,7 +24,7 @@ function validateForm(event) {
         return false;
     }
 
-    const mobNumPattern = /^\+?d{10,15}$/;
+    const mobNumPattern = /^\+?\d{10,15}$/;
     if (!mobNumPattern.test(mobNum)) {
         alert("Please enter a valid mobile number");
         return false;
@@ -67,8 +67,8 @@ function validateForm(event) {
         return false;
     }
 
-    if (image.size > 2 * 1024 * 1024) { // 2MB limit
-        alert("Image size exceeds 2MB. Please upload a smaller image.");
+    if (image.size > 5 * 1024 * 1024) { // 5MB limit
+        alert("Image size exceeds 5MB. Please upload a smaller image.");
         return false;
     }
 
