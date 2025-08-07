@@ -25,9 +25,9 @@ try {
     
     // Build query with search functionality
     if (!empty($searchTerm)) {
-        $sql = "SELECT id, full_name, dob, gender, course, year_level, contact_number, email, created_at FROM students WHERE full_name LIKE '%$searchTerm%' OR course LIKE '%$searchTerm%' OR year_level LIKE '%$searchTerm%' ORDER BY id ASC";
+        $sql = "SELECT id, full_name, dob, gender, course, year_level, contact_number, email, created_at FROM students WHERE full_name LIKE '%$searchTerm%' OR course LIKE '%$searchTerm%' OR year_level LIKE '%$searchTerm%' ORDER BY id DESC";
     } else {
-        $sql = "SELECT id, full_name, dob, gender, course, year_level, contact_number, email, created_at FROM students ORDER BY id ASC";
+        $sql = "SELECT id, full_name, dob, gender, course, year_level, contact_number, email, created_at FROM students ORDER BY id DESC";
     }
     
     $result = $conn->query($sql);
