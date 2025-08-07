@@ -3,6 +3,17 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include 'insert.php';
 }
+
+// Check for session messages
+session_start();
+$message = $_SESSION['message'] ?? null;
+$messageType = $_SESSION['messageType'] ?? null;
+
+// Clear session messages after displaying
+if ($message) {
+    unset($_SESSION['message']);
+    unset($_SESSION['messageType']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,9 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/src/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script defer src="/src/JavaScript/validation.js"></script>
     <script defer src="/src/JavaScript/animation.js"></script>
     <script defer src="/src/JavaScript/popUp.js"></script>
+    <script defer src="/src/JavaScript/successPopup.js"></script>
     <title>Student Admission</title>
 </head>
 <body>
@@ -110,6 +123,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="answer">
                     <button type="confirm" class="confirmBtn" id="confirm">CONFIRM</button>
                     <button type="cancel" class="cancelBtn" id="cancel">CANCEL</button>
+                </div>
+            </div>
+            
+            <!-- Success/Error Popup -->
+            <div class="successPopup" id="successPopup">
+                <div class="popupContent">
+                    <div class="popupIcon">
+                        <i class="fas fa-check-circle" id="successIcon"></i>
+                        <i class="fas fa-exclamation-triangle" id="errorIcon"></i>
+                    </div>
+                    <div class="popupMessage">
+                        <h3 id="popupTitle">Success!</h3>
+                        <p id="popupText">Student record has been submitted successfully!</p>
+                    </div>
+                    <div class="popupButtons">
+                        <button type="button" class="okBtn" id="okBtn">OK</button>
+                    </div>
                 </div>
             </div>
         </div>

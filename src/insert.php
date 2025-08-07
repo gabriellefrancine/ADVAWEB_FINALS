@@ -34,11 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("ssssisss", $fullName, $birthday, $gender, $program, $yearLevel, $mobNum, $email, $imageData);
         
         if ($stmt->execute()) {
-            $message = "Student record added successfully!";
-            $messageType = "success";
+            session_start();
+            $_SESSION['message'] = "Student record added successfully!";
+            $_SESSION['messageType'] = "success";
         } else {
-            $message = "Error: " . $stmt->error;
-            $messageType = "error";
+            session_start();
+            $_SESSION['message'] = "Error: " . $stmt->error;
+            $_SESSION['messageType'] = "error";
         }
         
         $stmt->close();
@@ -49,8 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
         
     } catch (Exception $e) {
-        $message = "Error: " . $e->getMessage();
-        $messageType = "error";
+        session_start();
+        $_SESSION['message'] = "Error: " . $e->getMessage();
+        $_SESSION['messageType'] = "error";
     }
 }
 ?>

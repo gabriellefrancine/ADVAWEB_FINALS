@@ -61,6 +61,7 @@ try {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/src/style.css">
     <script defer src="/src/JavaScript/messageHandler.js"></script>
+    <script defer src="/src/JavaScript/displayPopup.js"></script>
     <title>Student Records</title>
 </head>
 <body>
@@ -203,29 +204,39 @@ try {
         </div>
     </div>
 
-    <script>
-        function updateStudent(id) {
-            // Redirect to update form (you can create this later)
-            window.location.href = 'update_student.php?id=' + id;
-        }
+    <!-- Success/Error Popup -->
+    <div class="successPopup" id="successPopup">
+        <div class="popupContent">
+            <div class="popupIcon">
+                <i class="fas fa-check-circle" id="successIcon"></i>
+                <i class="fas fa-exclamation-triangle" id="errorIcon"></i>
+            </div>
+            <div class="popupMessage">
+                <h3 id="popupTitle">Success!</h3>
+                <p id="popupText">Operation completed successfully!</p>
+            </div>
+            <div class="popupButtons">
+                <button type="button" class="okBtn" id="okBtn">OK</button>
+            </div>
+        </div>
+    </div>
 
-        function deleteStudent(id) {
-            if (confirm('Are you sure you want to delete this student record?')) {
-                // Create a form to submit the delete request
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = 'delete_student.php';
-                
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'student_id';
-                input.value = id;
-                
-                form.appendChild(input);
-                document.body.appendChild(form);
-                form.submit();
-            }
-        }
-    </script>
+    <!-- Delete Confirmation Popup -->
+    <div class="confirmationPopup" id="confirmationPopup">
+        <div class="popupContent">
+            <div class="popupIcon">
+                <i class="fas fa-question-circle" id="questionIcon"></i>
+            </div>
+            <div class="popupMessage">
+                <h3 id="confirmTitle">Confirm Delete</h3>
+                <p id="confirmText">Are you sure you want to delete this student record? This action cannot be undone.</p>
+            </div>
+            <div class="popupButtons">
+                <button type="button" class="cancelBtn" id="cancelDeleteBtn">CANCEL</button>
+                <button type="button" class="confirmBtn" id="confirmDeleteBtn">DELETE</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

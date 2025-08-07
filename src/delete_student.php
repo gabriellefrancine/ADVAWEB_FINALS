@@ -16,9 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['student_id'])) {
         $_SESSION['message'] = "Connection failed: " . $conn->connect_error;
         $_SESSION['messageType'] = "error";
     } else {
-        // Simple DELETE query
         $sql = "DELETE FROM students WHERE id = $student_id";
-        
         if ($conn->query($sql) === TRUE) {
             $_SESSION['message'] = "Student record deleted successfully.";
             $_SESSION['messageType'] = "success";

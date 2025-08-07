@@ -88,6 +88,13 @@ try {
     $message = "Error: " . $e->getMessage();
     $messageType = "error";
 }
+
+// Check for session messages (for when redirected back from display.php)
+if (isset($_SESSION['message']) && empty($message)) {
+    $message = $_SESSION['message'];
+    $messageType = $_SESSION['messageType'];
+    unset($_SESSION['message'], $_SESSION['messageType']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,6 +102,8 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/src/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script defer src="/src/JavaScript/updatePopup.js"></script>
     <title>Update Student</title>
 </head>
 <body>
@@ -189,9 +198,26 @@ try {
                     <!-- Submit Buttons -->
                     <div class="buttonContainer">
                         <button type="submit" class="submitBtn">UPDATE</button>
-                        <a href="display.php" class="submitBtn" style="text-decoration: none; text-align: center; line-height: 2;">CANCEL</a>
+                        <a href="display.php" class="submitBtn" style="text-decoration: none; text-align: center;">CANCEL</a>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success/Error Popup -->
+    <div class="successPopup" id="successPopup">
+        <div class="popupContent">
+            <div class="popupIcon">
+                <i class="fas fa-check-circle" id="successIcon"></i>
+                <i class="fas fa-exclamation-triangle" id="errorIcon"></i>
+            </div>
+            <div class="popupMessage">
+                <h3 id="popupTitle">Success!</h3>
+                <p id="popupText">Student record has been updated successfully!</p>
+            </div>
+            <div class="popupButtons">
+                <button type="button" class="okBtn" id="okBtn">OK</button>
             </div>
         </div>
     </div>

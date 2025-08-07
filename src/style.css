@@ -409,6 +409,156 @@ input, select{
     border: 1px solid var(--dark-blue);
 }
 
+/* Success/Error Popup Styles */
+.successPopup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.popupContent {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    animation: popupAppear 0.3s ease-out;
+}
+
+@keyframes popupAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.popupIcon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.popupIcon #successIcon {
+    color: #28a745;
+    display: none;
+}
+
+.popupIcon #errorIcon {
+    color: #dc3545;
+    display: none;
+}
+
+.popupIcon.success #successIcon {
+    display: inline-block;
+}
+
+.popupIcon.error #errorIcon {
+    display: inline-block;
+}
+
+.popupMessage h3 {
+    color: var(--deep-navy);
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.popupMessage p {
+    color: var(--dark-gray);
+    margin: 0 0 1.5rem 0;
+    line-height: 1.4;
+}
+
+.popupButtons {
+    display: flex;
+    justify-content: center;
+}
+
+.okBtn {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.okBtn:hover {
+    background-color: var(--deep-navy);
+}
+
+/* Confirmation Popup Styles */
+.confirmationPopup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirmationPopup .popupIcon #questionIcon {
+    color: #ffc107;
+    display: inline-block;
+}
+
+.confirmationPopup .popupButtons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.cancelBtn {
+    background-color: var(--gray);
+    color: var(--dark-gray);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.cancelBtn:hover {
+    background-color: var(--dark-gray);
+    color: var(--white);
+}
+
+.confirmBtn {
+    background-color: #dc3545;
+    color: var(--white);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.confirmBtn:hover {
+    background-color: #c82333;
+}
+
 .answer {
     padding: 2rem;
     padding-bottom: 0;
