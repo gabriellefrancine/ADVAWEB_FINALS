@@ -206,6 +206,14 @@ input, select{
 }
 
 /* display.php styles */
+.mainWrapper {
+    width: 100%;
+    height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .featuresContainer {
     width: 85%;
     display: flex;
@@ -247,25 +255,36 @@ input, select{
     display: flex;
     flex-direction: column;
     background-color: var(--white);
-    padding: 2rem;
     border-radius: .5rem;
+    height: 75%;
+}
+
+.topContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pageController {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
 }
 
 .message {
     font-size: 1.2rem;
     color: var(--dark-gray);
     text-align: center;
+    padding-left: 1rem;
 }
 
 /*table styles */
 .dataTable {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1rem;
     font-size: 1rem;
-    border-radius: .5rem;
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     table-layout: auto;
 }
 
@@ -288,8 +307,8 @@ input, select{
 }
 
 .dataTable img {
-    width: 100%;
-    height: 4rem;
+    width: 6rem;
+    height: 5rem;
     object-fit: cover;
     border: 1px solid var(--dark-blue);
     margin: 0;
@@ -301,22 +320,38 @@ input, select{
     gap: .5rem;
 }
 
+/*popup styles */
 .clearInfo {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transform: translate(-50%, -50%);
-    border: 1px solid #ccc;
     padding: 20px;
     z-index: 1000;
     justify-content: center;
     align-items: center;
+    background-color: var(--white);
+    color: var(--deep-navy);
+    border: 1px solid var(--dark-blue);
 }
 
 .answer {
+    padding: 2rem;
+    padding-bottom: 0;
+    padding-right: 0;
     display: flex;
-    justify-content: center;
-    gap: 20px; /* space between buttons */
+    justify-content: flex-end;
+    gap: 10px; 
+}
+
+.answer button {
+    cursor: pointer;
+    font-size: .8rem;
+    text-align: center;
+    background-color: var(--dark-blue);
+    color: var(--white);
+    border: none;
 }
 

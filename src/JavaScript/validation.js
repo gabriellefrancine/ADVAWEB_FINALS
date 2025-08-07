@@ -91,24 +91,4 @@ document.addEventListener('DOMContentLoaded', function() {
         alert("Form submitted successfully!");
         event.preventDefault();
     });
-
-    const resetBtn = document.getElementById('resetBtn');
-    const clearInfoPopup = document.getElementById('clearInfoPopup');
-    const cancelBtn = document.getElementById('cancel');
-    const yesBtn = document.getElementById('yes');
-
-    resetBtn.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default reset
-        clearInfoPopup.style.display = 'block';
-    });
-
-    cancelBtn.addEventListener('click', function() {
-        clearInfoPopup.style.display = 'none';
-    });
-
-    yesBtn.addEventListener('click', function() {
-        form.reset(); // Reset the form
-        clearInfoPopup.style.display = 'none'; // Hide the popup
-        alert("Form has been cleared.");
-    });
 });

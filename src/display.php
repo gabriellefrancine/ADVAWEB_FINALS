@@ -10,9 +10,16 @@
 <body>
     <header class="header_container">
         <img src="/Images/logo.svg" alt="iACADEMY Logo">
+        <div class="navBar">
+            <p>Admin</p>
+            <p>Faculty</p>
+            <p class="active">Student</p>
+            <p>Non-Teaching Staff</p>
+            <p>Logout</p>
+        </div>
     </header>
 
-    <div class="mainContainer">
+    <div class="mainWrapper">
         <!--contains title, search bar, and filter -->
         <div class="featuresContainer">
             <div class="title">
@@ -30,8 +37,15 @@
         <!--table for student records -->
         <div class="studentData">
             <!--count of entries found -->
-            <div class="message">
-                <p>Dito lalagay kung ilan entries nahanap if nag search</p>
+            <div class="topContainer">
+                <div class="message">
+                    <p>Dito lalagay kung ilan entries nahanap if nag search</p>
+                </div>
+
+                <div class="pageController">
+                    <button class="prevPage"><i class="fa fa-chevron-left"></i></button>
+                    <button class="nextPage"><i class="fa fa-chevron-right"></i></button>
+                </div>
             </div>
 
             <table class ="dataTable">
@@ -50,7 +64,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
+               <tbody id="studentTableBody">
                     <tr>
                         <td><img src="/Images/logo.svg" alt="Picture"></td>
                         <td>1</td>

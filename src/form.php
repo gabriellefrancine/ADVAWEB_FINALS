@@ -6,26 +6,8 @@
     <link rel="stylesheet" href="/src/style.css">
     <script defer src="/src/JavaScript/validation.js"></script>
     <script defer src="/src/JavaScript/animation.js"></script>
+     <script defer src="/src/JavaScript/popUp.js"></script>
     <title>Student Admission</title>
-    <style>
-        .clearInfo {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 1px solid #ccc;
-            padding: 20px;
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        .answer {
-            display: flex;
-            justify-content: center;
-            gap: 20px; /* space between buttons */
-        }
-    </style>
 </head>
 <body>
     <header class="header_container">
@@ -112,10 +94,10 @@
             </div>
             <div class="clearInfo" id="clearInfoPopup">
                 <div class="question">
-                    <p>Are you sure you want to clear the form?</p>
+                    <p>This will reset all fields. Proceed?</p>
                 </div>
                 <div class="answer">
-                    <button type="yes" class="yesBtn" id="yes">YES</button>
+                    <button type="confirm" class="confirmBtn" id="confirm">CONFIRM</button>
                     <button type="cancel" class="cancelBtn" id="cancel">CANCEL</button>
                 </div>
             </div>
@@ -124,25 +106,4 @@
 
     <canvas id="circleAnimation"></canvas>
 </body>
-<script>
-    const form = document.querySelector('form');
-    const resetBtn = document.getElementById('resetBtn');
-    const clearInfoPopup = document.getElementById('clearInfoPopup');
-    const cancelBtn = document.getElementById('cancel');
-    const yesBtn = document.getElementById('yes');
-
-    resetBtn.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default reset
-        clearInfoPopup.style.display = 'block';
-    });
-
-    cancelBtn.addEventListener('click', function() {
-        clearInfoPopup.style.display = 'none';
-    });
-
-    yesBtn.addEventListener('click', function() {
-        form.reset(); // Reset the form
-        clearInfoPopup.style.display = 'none'; // Hide the popup
-    });
-</script>
 </html>
