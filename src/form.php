@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,6 +38,7 @@
                                         <option value="" disabled selected>Select Gender</option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
+                                        <option value="other">Other</option>
                                     </select>
                                 </div>
 
@@ -64,19 +64,21 @@
                         <!-- Student Academic Information -->
                         <div class="academicDetails">
                             <label for="program">Program:</label>
-                           <input type="text" id="program" name="program" required>
+                            <input type="text" id="program" name="program" required>
 
                             <label for="yearLevel">Year Level:</label>
                             <input type="number" id="yearLevel" name="yearLevel" required>
                         </div>
                     </div>
-                <!-- Image Upload Section -->
-                <div class="studentImage">
-                    <div class="uploadSection">
-                            <label for="image">Student Photo:</strong></label>
+
+                    <!-- Image Upload Section -->
+                    <div class="studentImage">
+                        <div class="uploadSection">
+                            <label for="image">Student Photo:</label>
                             <input type="file" name="image" id="image">
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
             <!-- Submit Button -->
             <div class="buttonContainer">

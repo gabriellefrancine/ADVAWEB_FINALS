@@ -90,17 +90,17 @@ body{
 
 .formContainer {
     width: 100%;
+}
+
+form{
+    width: 100%;
     display: flex;
     padding: 1rem;
     justify-content: space-between;
 }
 
-form{
-    width: 70%;
-}
-
 .studentInfo{
-    width: 100%;
+    width: 70%;
     gap: 2rem;
     display: flex;
 }
@@ -124,6 +124,8 @@ form{
 /*make the upload file not overflow the container*/
 .studentImage input[type="file"] {
     max-width: 100%;
+    width: 100%;
+    padding: 0.5rem;
 }
 
 .stack{
