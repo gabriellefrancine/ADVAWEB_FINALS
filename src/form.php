@@ -113,9 +113,21 @@
             return false;
         }
 
+        const mobNumPattern = /^\+?d{10,15}$/;
+        if (!mobNumPattern.test(mobNum)) {
+            alert("Please enter a valid mobile number");
+            return false;
+        }
+
         const email = document.getElementById('email').value;
         if (email === "") {
             alert("Email must be filled out");
+            return false;
+        }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email === "" || !emailPattern.test(email)) {
+            alert("Please enter a valid email address");
             return false;
         }
 
@@ -154,7 +166,6 @@
         alert("Form submitted successfully!");
         return true;
     }
-    // Attach the validation function to the form submission
     document.querySelector('form').onsubmit = validateForm;
 </script>
 </html>
