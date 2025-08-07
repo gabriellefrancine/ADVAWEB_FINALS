@@ -25,7 +25,7 @@ try {
     
     // Build query with search functionality
     if (!empty($searchTerm)) {
-        $sql = "SELECT id, full_name, dob, gender, course, year_level, contact_number, email, created_at FROM students WHERE full_name LIKE '%$searchTerm%' OR course LIKE '%$searchTerm%' ORDER BY id ASC";
+        $sql = "SELECT id, full_name, dob, gender, course, year_level, contact_number, email, created_at FROM students WHERE full_name LIKE '%$searchTerm%' OR course LIKE '%$searchTerm%' OR year_level LIKE '%$searchTerm%' ORDER BY id ASC";
     } else {
         $sql = "SELECT id, full_name, dob, gender, course, year_level, contact_number, email, created_at FROM students ORDER BY id ASC";
     }
@@ -82,7 +82,7 @@ try {
             </div>
 
             <form class="searchBar" method="GET">
-                <input type="text" placeholder="Search by name or program..." name="search" value="<?php echo htmlspecialchars($searchTerm); ?>">
+                <input type="text" placeholder="Search by name, program, or year level..." name="search" value="<?php echo htmlspecialchars($searchTerm); ?>">
                 <button type="submit">
                     <i class="fa fa-search"></i>
                 </button>
