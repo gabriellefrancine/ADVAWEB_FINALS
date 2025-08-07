@@ -122,66 +122,68 @@ try {
             
             <div class="formContainer">
                 <form method="POST" enctype="multipart/form-data">
-                    <div class="studentInfo">
-                        <!--Student Personal Information-->
-                        <div class="personalDetails">
-                            <label for="fullName">Full Name:</label>
-                            <input type="text" id="fullName" name="fullName" value="<?php echo htmlspecialchars($student['full_name']); ?>" required>
+                    <div class="formFields">
+                        <div class="studentInfo">
+                            <!--Student Personal Information-->
+                            <div class="personalDetails">
+                                <label for="fullName">Full Name:</label>
+                                <input type="text" id="fullName" name="fullName" value="<?php echo htmlspecialchars($student['full_name']); ?>" required>
 
-                            <div class="genderAndBirthday">
-                                <div class="stack">
-                                    <label for="gender">Gender:</label>
-                                    <select id="gender" name="gender" required>
-                                        <option value="Male" <?php echo ($student['gender'] === 'Male') ? 'selected' : ''; ?>>Male</option>
-                                        <option value="Female" <?php echo ($student['gender'] === 'Female') ? 'selected' : ''; ?>>Female</option>
-                                        <option value="Other" <?php echo ($student['gender'] === 'Other') ? 'selected' : ''; ?>>Other</option>
-                                    </select>
+                                <div class="genderAndBirthday">
+                                    <div class="stack">
+                                        <label for="gender">Gender:</label>
+                                        <select id="gender" name="gender" required>
+                                            <option value="Male" <?php echo ($student['gender'] === 'Male') ? 'selected' : ''; ?>>Male</option>
+                                            <option value="Female" <?php echo ($student['gender'] === 'Female') ? 'selected' : ''; ?>>Female</option>
+                                            <option value="Other" <?php echo ($student['gender'] === 'Other') ? 'selected' : ''; ?>>Other</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="stack">
+                                        <label for="birthday">Birthday:</label>
+                                        <input type="date" id="birthday" name="birthday" value="<?php echo htmlspecialchars($student['dob']); ?>" required>
+                                    </div>
                                 </div>
 
-                                <div class="stack">
-                                    <label for="birthday">Birthday:</label>
-                                    <input type="date" id="birthday" name="birthday" value="<?php echo htmlspecialchars($student['dob']); ?>" required>
+                                <div class="contactInfo">
+                                    <div class="stack">
+                                        <label for="mobNum">Mobile Number:</label>
+                                        <input type="text" id="mobNum" name="mobNum" value="<?php echo htmlspecialchars($student['contact_number']); ?>" required>
+                                    </div>
+
+                                    <div class="stack">
+                                        <label for="email">Email:</label>
+                                        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($student['email']); ?>" required>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="contactInfo">
-                                <div class="stack">
-                                    <label for="mobNum">Mobile Number:</label>
-                                    <input type="text" id="mobNum" name="mobNum" value="<?php echo htmlspecialchars($student['contact_number']); ?>" required>
-                                </div>
+                            <!-- Student Academic Information -->
+                            <div class="academicDetails">
+                                <label for="program">Program:</label>
+                                <input type="text" id="program" name="program" value="<?php echo htmlspecialchars($student['course']); ?>" required>
 
-                                <div class="stack">
-                                    <label for="email">Email:</label>
-                                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($student['email']); ?>" required>
-                                </div>
+                                <label for="yearLevel">Year Level:</label>
+                                <input type="number" id="yearLevel" name="yearLevel" value="<?php echo htmlspecialchars($student['year_level']); ?>" required>
                             </div>
                         </div>
 
-                        <!-- Student Academic Information -->
-                        <div class="academicDetails">
-                            <label for="program">Program:</label>
-                            <input type="text" id="program" name="program" value="<?php echo htmlspecialchars($student['course']); ?>" required>
-
-                            <label for="yearLevel">Year Level:</label>
-                            <input type="number" id="yearLevel" name="yearLevel" value="<?php echo htmlspecialchars($student['year_level']); ?>" required>
-                        </div>
-                    </div>
-                
-                    <!-- Image Upload Section -->
-                    <div class="studentImage">
-                        <div class="uploadSection">
-                            <label for="image">Student Photo:</label>
-                            <input type="file" name="image" id="image">
-                            <small>Leave empty to keep current photo</small>
-                            <?php if ($student['student_picture']): ?>
-                                <div style="margin-top: 1rem;">
-                                    <p>Current Photo:</p>
-                                    <img src="display_image.php?id=<?php echo $student['id']; ?>" 
-                                         alt="Current Student Picture" 
-                                         style="width: 100px; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
+                         <!-- Image Upload Section -->
+                            <div class="studentImage">
+                                <div class="uploadSection">
+                                    <label for="image">Student Photo:</label>
+                                    <input type="file" name="image" id="image">
+                                    <small>Leave empty to keep current photo</small>
+                                    <?php if ($student['student_picture']): ?>
+                                        <div style="margin-top: 1rem;">
+                                            <p>Current Photo:</p>
+                                            <img src="display_image.php?id=<?php echo $student['id']; ?>" 
+                                                alt="Current Student Picture" 
+                                                style="width: 100px; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
-                            <?php endif; ?>
-                        </div>
+                            </div>
                     </div>
                     
                     <!-- Submit Buttons -->
