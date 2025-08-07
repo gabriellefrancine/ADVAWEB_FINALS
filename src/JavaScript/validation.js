@@ -86,6 +86,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // All validations passed, allow form submission
-       // alert("Form submitted successfully!");
     });
 });
