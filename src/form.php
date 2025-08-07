@@ -96,8 +96,8 @@
                     <p>Are you sure you want to clear the form?</p>
                 </div>
                 <div class="answer">
-                    <button type="yes" class="submitBtn" id="yes">YES</button>
-                    <button type="cancel" class="submitBtn" id="cancel">CANCEL</button>
+                    <button type="yes" class="yesBtn" id="yes">YES</button>
+                    <button type="cancel" class="cancelBtn" id="cancel">CANCEL</button>
                 </div>
             </div>
         </div>
