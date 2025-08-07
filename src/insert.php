@@ -43,6 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         $stmt->close();
         $conn->close();
+
+        // Redirect to avoid resubmission
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
         
     } catch (Exception $e) {
         $message = "Error: " . $e->getMessage();
