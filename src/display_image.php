@@ -14,9 +14,11 @@ if (isset($_GET['id'])) {
         die("Connection failed: " . $conn->connect_error);
     }
     
-    // Simple query to get image
-    $sql = "SELECT student_picture FROM students WHERE id = $studentId";
-    $result = $conn->query($sql);
+    // Use prepared statement to get image
+    $stmt = $conn->prepare("SELECT student_picture FROM students WHERE id = ?");
+    $stmt->bind_param("i", $studentId);
+    $stmt->execute();
+    $result = $stmt->get_result();
     
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
@@ -42,6 +44,8 @@ if (isset($_GET['id'])) {
               </svg>';
     }
     
+    $stmt->close();
+    // Close the connection
     $conn->close();
 } else {
     // No ID provided

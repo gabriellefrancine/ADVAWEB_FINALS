@@ -23,20 +23,25 @@ try {
         die("Connection failed: " . $conn->connect_error);
     }
     
-    // Build query with search functionality
+    // Build query with search functionality using prepared statements
     if (!empty($searchTerm)) {
-        $sql = "SELECT id, full_name, dob, gender, course, year_level, contact_number, email, created_at FROM students WHERE full_name LIKE '%$searchTerm%' OR course LIKE '%$searchTerm%' OR year_level LIKE '%$searchTerm%' ORDER BY id DESC";
+        $searchParam = "%$searchTerm%";
+        $stmt = $conn->prepare("SELECT id, full_name, dob, gender, course, year_level, contact_number, email, created_at FROM students WHERE full_name LIKE ? OR course LIKE ? OR year_level LIKE ? ORDER BY id DESC");
+        $stmt->bind_param("sss", $searchParam, $searchParam, $searchParam);
     } else {
-        $sql = "SELECT id, full_name, dob, gender, course, year_level, contact_number, email, created_at FROM students ORDER BY id DESC";
+        $stmt = $conn->prepare("SELECT id, full_name, dob, gender, course, year_level, contact_number, email, created_at FROM students ORDER BY id DESC");
     }
     
-    $result = $conn->query($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
     
     if ($result) {
         while ($row = $result->fetch_assoc()) {
             $allStudents[] = $row;
         }
     }
+    
+    $stmt->close();
     
     // Use count() function to get total records
     $totalRecords = count($allStudents);
