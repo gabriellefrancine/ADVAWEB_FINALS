@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
     $stmt->bind_param("i", $studentId);
     $stmt->execute();
     $result = $stmt->get_result();
-    
+
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $imageData = $row['student_picture'];
@@ -27,32 +27,10 @@ if (isset($_GET['id'])) {
         if ($imageData) {
             header('Content-Type: image/jpeg');
             echo $imageData;
-        } else {
-            // No image - show placeholder
-            header('Content-Type: image/svg+xml');
-            echo '<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="100" height="100" fill="#f0f0f0"/>
-                    <text x="50" y="50" text-anchor="middle" dy=".3em" fill="#999">No Image</text>
-                  </svg>';
         }
-    } else {
-        // Student not found
-        header('Content-Type: image/svg+xml');
-        echo '<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100" height="100" fill="#f0f0f0"/>
-                <text x="50" y="50" text-anchor="middle" dy=".3em" fill="#999">Not Found</text>
-              </svg>';
     }
-    
+    // Close Connection
     $stmt->close();
-    // Close the connection
     $conn->close();
-} else {
-    // No ID provided
-    header('Content-Type: image/svg+xml');
-    echo '<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100" height="100" fill="#f0f0f0"/>
-            <text x="50" y="50" text-anchor="middle" dy=".3em" fill="#999">No ID</text>
-          </svg>';
 }
 ?>
