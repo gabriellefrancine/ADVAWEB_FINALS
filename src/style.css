@@ -19,6 +19,9 @@
     --white: #FFFFFF;
     --gray:#E0DCDC;
     --dark-gray: #393636;
+    --red:#dc3545;
+    --yellow: #FFC107;
+    --green: #28a745;
 }
 
 *{
@@ -365,20 +368,53 @@ input, select{
 }
 
 /*popup styles */
+.clearInfoOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
 .clearInfo {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transform: translate(-50%, -50%);
-    padding: 20px;
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
+    padding: 2rem;
     background-color: var(--white);
-    color: var(--deep-navy);
-    border: 1px solid var(--dark-blue);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    z-index: 1000;
+}
+
+.answer {
+    padding: 2rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+}
+
+.answer button {
+    cursor: pointer;
+    font-size: 0.8rem;
+    height: 2rem; /* More reasonable height */
+    width: 5rem;
+    display: flex; /* Needed for centering text */
+    align-items: center; 
+    justify-content: center;
+    
+    background-color: var(--dark-blue);
+    color: var(--white);
+    border: none;
 }
 
 /* Success/Error Popup Styles */
@@ -395,7 +431,7 @@ input, select{
     align-items: center;
 }
 
-.popupContent {
+.popupContent{
     background-color: var(--white);
     padding: 2rem;
     border-radius: 10px;
@@ -423,12 +459,12 @@ input, select{
 }
 
 .popupIcon #successIcon {
-    color: #28a745;
+    color: var(--green);
     display: none;
 }
 
 .popupIcon #errorIcon {
-    color: #dc3545;
+    color: var(--red);
     display: none;
 }
 
@@ -488,7 +524,7 @@ input, select{
 }
 
 .confirmationPopup .popupIcon #questionIcon {
-    color: #ffc107;
+    color: var(--yellow);
     display: inline-block;
 }
 
@@ -510,13 +546,8 @@ input, select{
     transition: background-color 0.3s ease;
 }
 
-.cancelBtn:hover {
-    background-color: var(--dark-gray);
-    color: var(--white);
-}
-
 .confirmBtn {
-    background-color: #dc3545;
+    background-color: var(--red);
     color: var(--white);
     border: none;
     padding: 0.8rem 1.5rem;
@@ -527,25 +558,4 @@ input, select{
     transition: background-color 0.3s ease;
 }
 
-.confirmBtn:hover {
-    background-color: #c82333;
-}
-
-.answer {
-    padding: 2rem;
-    padding-bottom: 0;
-    padding-right: 0;
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px; 
-}
-
-.answer button {
-    cursor: pointer;
-    font-size: .8rem;
-    text-align: center;
-    background-color: var(--dark-blue);
-    color: var(--white);
-    border: none;
-}
 

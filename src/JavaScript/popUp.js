@@ -1,19 +1,25 @@
 const resetBtn = document.getElementById('resetBtn');
-    const form = document.querySelector('form'); 
-    const clearInfoPopup = document.getElementById('clearInfoPopup');
-    const cancelBtn = document.getElementById('cancel');
-    const confirmBtn = document.getElementById('confirm');
+const form = document.querySelector('form');
+const clearInfoOverlay = document.getElementById('clearInfoOverlay');
+const clearInfoPopup = document.getElementById('clearInfoPopup');
+const cancelBtn = document.getElementById('cancel');
+const confirmBtn = document.getElementById('confirm');
 
-    resetBtn.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default reset
-        clearInfoPopup.style.display = 'block';
-    });
+resetBtn.addEventListener('click', function (event) {
+    event.preventDefault(); 
+    clearInfoOverlay.style.display = 'flex'; // show dim background
+    clearInfoPopup.style.display = 'block';  // show popup
+});
 
-    cancelBtn.addEventListener('click', function() {
-        clearInfoPopup.style.display = 'none';
-    });
+//close popup
+cancelBtn.addEventListener('click', function () {
+    clearInfoOverlay.style.display = 'none'; 
+    clearInfoPopup.style.display = 'none';
+});
 
-    confirmBtn.addEventListener('click', function() {
-        form.reset(); // Reset the form
-        clearInfoPopup.style.display = 'none'; // Hide the popup
-    });
+//reset
+confirmBtn.addEventListener('click', function () {
+    form.reset(); 
+    clearInfoOverlay.style.display = 'none';
+    clearInfoPopup.style.display = 'none';
+});

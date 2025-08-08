@@ -57,12 +57,12 @@ if ($message) {
                             <!--Student Personal Information-->
                             <div class="personalDetails">
                                 <label for="fullName">Full Name:</label>
-                                <input type="text" id="fullName" name="fullName" required>
+                                <input type="text" id="fullName" name="fullName">
 
                                 <div class="genderAndBirthday">
                                     <div class="stack">
                                         <label for="gender">Gender:</label>
-                                        <select id="gender" name="gender" required>
+                                        <select id="gender" name="gender">
                                             <option value="" disabled selected>Select Gender</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
@@ -72,19 +72,19 @@ if ($message) {
 
                                     <div class="stack">
                                         <label for="birthday">Birthday:</label>
-                                        <input type="date" id="birthday" name="birthday" required>
+                                        <input type="date" id="birthday" name="birthday">
                                     </div>
                                 </div>
 
                                 <div class="contactInfo">
                                     <div class="stack">
                                         <label for="mobNum">Mobile Number:</label>
-                                        <input type="text" id="mobNum" name="mobNum" required>
+                                        <input type="text" id="mobNum" name="mobNum">
                                     </div>
 
                                     <div class="stack">
                                         <label for="email">Email:</label>
-                                        <input type="email" id="email" name="email" required>
+                                        <input type="email" id="email" name="email">
                                     </div>
                                 </div>
                             </div>
@@ -92,10 +92,10 @@ if ($message) {
                             <!-- Student Academic Information -->
                             <div class="academicDetails">
                                 <label for="program">Program:</label>
-                            <input type="text" id="program" name="program" required>
+                            <input type="text" id="program" name="program">
 
                                 <label for="yearLevel">Year Level:</label>
-                                <input type="number" id="yearLevel" name="yearLevel" required>
+                                <input type="number" id="yearLevel" name="yearLevel">
                             </div>
                         </div>
                     
@@ -116,13 +116,16 @@ if ($message) {
                     </div>
                 </form>
             </div>
-            <div class="clearInfo" id="clearInfoPopup">
-                <div class="question">
-                    <p>This will reset all fields. Proceed?</p>
-                </div>
-                <div class="answer">
-                    <button type="confirm" class="confirmBtn" id="confirm">CONFIRM</button>
-                    <button type="cancel" class="cancelBtn" id="cancel">CANCEL</button>
+            <!-- Clear Info Popup -->
+            <div class="clearInfoOverlay" id="clearInfoOverlay">
+                <div class="clearInfo" id="clearInfoPopup">
+                    <div class="question">
+                        <p>This will reset all fields. Proceed?</p>
+                    </div>
+                    <div class="answer">
+                        <button type="button" class="confirmBtn" id="confirm">CONFIRM</button>
+                        <button type="button" class="cancelBtn" id="cancel">CANCEL</button>
+                    </div>
                 </div>
             </div>
             

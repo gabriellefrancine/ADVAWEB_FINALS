@@ -10,10 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
   resize();
   window.addEventListener('resize', resize);
 
-  // Enhanced circles with natural movement properties
+  // circle properties
   const circles = [
     {
-      // Large orange circle - orbital movement
       centerX: canvas.width * 0.8,
       centerY: canvas.height * 0.4,
       radius: 200,
@@ -26,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
       type: 'orbital'
     },
     {
-      // Blue circle - sine wave movement
       x: 100,
       y: canvas.height * 0.8,
       radius: 160,
@@ -40,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
       type: 'wave'
     },
     {
-      // Pink circle - floating movement
       x: canvas.width * 0.6,
       y: canvas.height * 0.7,
       radius: 120,
@@ -54,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
       type: 'float'
     },
     {
-      // Small light blue circle - figure-8 movement
       centerX: canvas.width * 0.4,
       centerY: canvas.height * 0.2,
       radius: 70,
@@ -66,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
       type: 'figure8'
     },
     {
-      // Red circle - spiral movement
       centerX: 80,
       centerY: 150,
       radius: 150,
@@ -84,25 +79,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function animateCircle() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    time += 0.016; // Approximately 60fps
+    time += 0.016;
 
     circles.forEach(circle => {
       let x, y, currentRadius;
 
-      // Calculate breathing effect
+      // breathing effect
       const breathe = Math.sin(time * circle.breatheSpeed) * circle.breatheAmount;
       currentRadius = circle.radius + breathe;
 
       switch (circle.type) {
         case 'orbital':
-          // Smooth orbital movement
+          // orbital movement
           circle.angle += circle.speed;
           x = circle.centerX + Math.cos(circle.angle) * circle.orbitRadius;
           y = circle.centerY + Math.sin(circle.angle) * (circle.orbitRadius * 0.6); // Elliptical
           break;
 
         case 'wave':
-          // Sine wave movement across screen
+          // wave movement across screen
           circle.x += circle.speed;
           if (circle.x > canvas.width + circle.radius) {
             circle.x = -circle.radius;
@@ -113,15 +108,15 @@ document.addEventListener('DOMContentLoaded', () => {
           break;
 
         case 'float':
-          // Natural floating movement with random target changes
+          //floating movement with target change
           circle.changeTargetTimer++;
-          if (circle.changeTargetTimer > 300) { // Change target every 5 seconds
+          if (circle.changeTargetTimer > 300) { 
             circle.targetX = Math.random() * (canvas.width - circle.radius * 2) + circle.radius;
             circle.targetY = Math.random() * (canvas.height - circle.radius * 2) + circle.radius;
             circle.changeTargetTimer = 0;
           }
           
-          // Smooth movement towards target with easing
+         
           const dx = circle.targetX - circle.x;
           const dy = circle.targetY - circle.y;
           circle.x += dx * circle.speed;
@@ -132,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
           break;
 
         case 'figure8':
-          // Figure-8 movement pattern
           circle.angle += circle.speed;
           const scale = 80;
           x = circle.centerX + Math.sin(circle.angle) * scale;
@@ -140,14 +134,13 @@ document.addEventListener('DOMContentLoaded', () => {
           break;
 
         case 'spiral':
-          // Expanding and contracting spiral
+          // expanding and contracting spiral
           circle.angle += circle.speed;
           const spiralExpansion = Math.sin(time * 0.3) * 30;
           const currentSpiralRadius = circle.spiralRadius + spiralExpansion;
           x = circle.centerX + Math.cos(circle.angle) * currentSpiralRadius;
           y = circle.centerY + Math.sin(circle.angle) * currentSpiralRadius;
           
-          // Slowly move the spiral center
           circle.centerX += Math.sin(time * 0.002) * 0.5;
           circle.centerY += Math.cos(time * 0.003) * 0.3;
           break;
@@ -180,10 +173,10 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(animateCircle);
   }
 
-  // Handle window resize
+  // window resize
   window.addEventListener('resize', () => {
     resize();
-    // Update circle positions for new canvas size
+    // update pos
     circles.forEach(circle => {
       if (circle.centerX) {
         circle.centerX = Math.min(circle.centerX, canvas.width - circle.radius);
