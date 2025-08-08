@@ -11,7 +11,7 @@ $dbname = "school_db";
 $allStudents = [];
 $students = [];
 $totalRecords = 0;
-$recordsPerPage = 4;
+$recordsPerPage = 5;
 $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($currentPage - 1) * $recordsPerPage;
 $searchTerm = isset($_GET['search']) ? trim($_GET['search']) : '';
@@ -171,7 +171,7 @@ try {
                         <th></th>
                     </tr>
                 </thead>
-               <tbody id="studentTableBody">
+                <tbody id="studentTableBody">
                     <?php if (empty($students) && !isset($error_message)): ?>
                         <tr>
                             <td colspan="11" style="text-align: center; padding: 2rem;">
@@ -185,18 +185,18 @@ try {
                                     <img src="display_image.php?id=<?php echo $student['id']; ?>" 
                                          alt="Student Picture" 
                                          style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;"
-                                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjZjBmMGYwIi8+Cjx0ZXh0IHg9IjMwIiB5PSIzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzk5OSI+Tm8gSW1hZ2U8L3RleHQ+Cjwvc3ZnPg==';">
-                                </td>
-                                <td><?php echo htmlspecialchars($student['id']); ?></td>
-                                <td><?php echo htmlspecialchars($student['full_name']); ?></td>
-                                <td><?php echo htmlspecialchars($student['dob']); ?></td>
-                                <td><?php echo htmlspecialchars(ucfirst($student['gender'])); ?></td>
-                                <td><?php echo htmlspecialchars($student['course']); ?></td>
-                                <td><?php echo htmlspecialchars($student['year_level']); ?></td>
-                                <td><?php echo htmlspecialchars($student['contact_number']); ?></td>
-                                <td><?php echo htmlspecialchars($student['email']); ?></td>
-                                <td><?php echo isset($student['created_at']) ? date('Y-m-d', strtotime($student['created_at'])) : 'N/A'; ?></td>
-                                <td>
+                                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjZjBmMGYwIi8+Cjx0ZXh0IHg9IjMwIiB5PSIzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzk5OSI+Tm8gSW1hZ2U8L3RleHQ+Cjwvc3ZnPg==';">      
+                                    </td>
+                                        <td><?php echo htmlspecialchars($student['id']); ?></td>
+                                        <td><?php echo htmlspecialchars($student['full_name']); ?></td>
+                                        <td><?php echo htmlspecialchars($student['dob']); ?></td>
+                                        <td><?php echo htmlspecialchars(ucfirst($student['gender'])); ?></td>
+                                        <td><?php echo htmlspecialchars($student['course']); ?></td>
+                                        <td><?php echo htmlspecialchars($student['year_level']); ?></td>
+                                        <td><?php echo htmlspecialchars($student['contact_number']); ?></td>
+                                        <td><?php echo htmlspecialchars($student['email']); ?></td>
+                                        <td><?php echo isset($student['created_at']) ? date('Y-m-d', strtotime($student['created_at'])) : 'N/A'; ?></td>
+                                        <td>
                                     <div class="buttonCont">
                                         <button onclick="updateStudent(<?php echo $student['id']; ?>)">Update</button>
                                         <button onclick="deleteStudent(<?php echo $student['id']; ?>)">Delete</button>

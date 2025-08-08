@@ -1,4 +1,3 @@
-// Success Popup Handler
 document.addEventListener('DOMContentLoaded', function() {
     const successPopup = document.getElementById('successPopup');
     const okBtn = document.getElementById('okBtn');
@@ -6,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const popupTitle = document.getElementById('popupTitle');
     const popupText = document.getElementById('popupText');
 
-    // Show popup with message from PHP
+
     function showPopup(message, type) {
         if (message) {
-            // Set popup content based on type
+    
             if (type === 'success') {
                 popupIcon.className = 'popupIcon success';
                 popupTitle.textContent = 'Success!';
@@ -30,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         okBtn.addEventListener('click', function() {
             successPopup.style.display = 'none';
             
-            // If it was a success message, reset the form
+            //reset form if success
             if (popupIcon.classList.contains('success')) {
                 const form = document.querySelector('form');
                 if (form) {
@@ -44,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
     successPopup.addEventListener('click', function(e) {
         if (e.target === successPopup) {
             successPopup.style.display = 'none';
-            
-            // If it was a success message, reset the form
+
+            //reset form if success
             if (popupIcon.classList.contains('success')) {
                 const form = document.querySelector('form');
                 if (form) {
@@ -55,16 +54,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Check if there's a message from PHP and show popup
+    // Check if there's a message and show popup
     const messageElement = document.querySelector('.message');
     if (messageElement) {
         const message = messageElement.textContent.trim();
         const type = messageElement.classList.contains('success') ? 'success' : 'error';
         
-        // Hide the original message element
         messageElement.style.display = 'none';
         
-        // Show the popup instead
         showPopup(message, type);
     }
 });
